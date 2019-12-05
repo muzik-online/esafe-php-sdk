@@ -40,12 +40,12 @@ class RefundService
     protected string $liveEndpoint = 'https://www.esafe.com.tw/Service/Hx_CardRefund.ashx';
     protected string $testEndpoint = 'https://test.esafe.com.tw/Service/Hx_CardRefund.ashx';
 
-    public function __construct(array $parameters, string $apiKey, bool $testing = false)
+    public function __construct(array $parameters, string $apiKey, bool $testing = false, Client $client = null)
     {
         $this->apiKey = $apiKey;
         $this->testing = $testing;
         $this->parameters = $this->buildParameters($parameters);
-        $this->client = new Client();
+        $this->client = $client ?: new Client();
     }
 
     public function send(): void
