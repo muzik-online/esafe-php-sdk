@@ -6,7 +6,7 @@ class WebAtm extends BaseHandler
 {
     protected function checkValue(): string
     {
-        $data = $this->web . $this->apiKey . $this->buysafeno . $this->errcode . $this->CargoNo;
+        $data = $this->web . $this->apiKey . $this->buysafeno . $this->MN . $this->errcode . $this->CargoNo;
 
         return strtoupper(hash('sha1', $data));
     }

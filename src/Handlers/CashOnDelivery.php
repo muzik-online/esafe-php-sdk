@@ -8,7 +8,7 @@ class CashOnDelivery extends BaseHandler
 {
     protected function checkValue(): string
     {
-        if (isset($this->parameters['CargoNo'])) {
+        if (!isset($this->parameters['CargoNo'])) {
             throw new HandlerException('Missing "CargoNo" parameter.');
         }
 
