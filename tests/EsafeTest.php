@@ -3,6 +3,7 @@
 namespace Test;
 
 use Muzik\EsafeSdk\Esafe;
+use Muzik\EsafeSdk\Services\RefundService;
 use PHPUnit\Framework\TestCase;
 
 class EsafeTest extends TestCase
@@ -12,5 +13,20 @@ class EsafeTest extends TestCase
         $this->assertInstanceOf(Esafe::class, new Esafe([
             'transaction_password' => 'abcd5888'
         ]));
+    }
+
+    public function test_refund()
+    {
+        $sdk = new Esafe([
+            'transaction_password' => 'abcd5888',
+        ]);
+
+        $this->assertInstanceOf(RefundService::class, $sdk->refund([
+            'web' => 'S1103020010',
+            'MN' => '1000',
+            'buysafeno' => '2400009912300000019',
+            'Td' => 'AC9087201',
+            'RefundMemo' => 'Hello World',
+        ], true));
     }
 }
