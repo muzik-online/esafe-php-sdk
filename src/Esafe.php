@@ -13,6 +13,7 @@ use Muzik\EsafeSdk\Handlers\UnionpayCard;
 use Muzik\EsafeSdk\Handlers\BarcodeResult;
 use Muzik\EsafeSdk\Handlers\PaycodeResult;
 use Muzik\EsafeSdk\Handlers\CashOnDelivery;
+use Muzik\EsafeSdk\Services\RefundService;
 use Psr\Http\Message\ServerRequestInterface;
 use Muzik\EsafeSdk\Handlers\BankTransferResult;
 use Muzik\EsafeSdk\Handlers\CashOnDeliveryResult;
@@ -42,5 +43,10 @@ class Esafe
     public function handle(string $handler, ServerRequestInterface $request): Handler
     {
         return new $handler($request, $this->apiKey);
+    }
+
+    public function refund(array $parameters, bool $testing): RefundService
+    {
+        return new RefundService($parameters, $this->apiKey, $testing);
     }
 }
