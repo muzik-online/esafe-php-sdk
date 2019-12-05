@@ -2,6 +2,7 @@
 
 namespace Muzik\EsafeSdk;
 
+use Muzik\EsafeSdk\Handlers\BankTransferResult;
 use Muzik\EsafeSdk\Handlers\WebAtm;
 use Muzik\EsafeSdk\Handlers\Barcode;
 use Muzik\EsafeSdk\Handlers\Paycode;
@@ -26,6 +27,7 @@ class Esafe
     const HANDLER_PAYCODE_RESULT = PaycodeResult::class;
     const HANDLER_WEB_ATM = WebAtm::class;
     const HANDLER_BANK_TRANSFER = BankTransfer::class;
+    const HANDLER_BANK_TRANSFER_RESULT = BankTransferResult::class;
     const HANDLER_CASH_ON_DELIVERY = CashOnDelivery::class;
     const HANDLER_CASH_ON_DELIVERY_RESULT = CashOnDeliveryResult::class;
     const HANDLER_TAIWAN_PAY = Taiwanpay::class;
