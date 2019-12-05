@@ -3,10 +3,13 @@
 namespace Muzik\EsafeSdk\Handlers;
 
 use Muzik\EsafeSdk\Contracts\Handler;
+use Muzik\EsafeSdk\Foundation\Validation;
 use Psr\Http\Message\ServerRequestInterface;
 
 abstract class BaseHandler implements Handler
 {
+    use Validation;
+
     /**
      * The parameters requested from esafe.com.tw.
      *
@@ -25,5 +28,12 @@ abstract class BaseHandler implements Handler
     {
         $this->parameters = array_filter((array) $request->getParsedBody(), fn ($item) => $item !== '');
         $this->apiKey = $apiKey;
+
+        $this->validate();
+    }
+
+    public function __get(string $name): ?string
+    {
+        return $this->parameters[$name] ?? null;
     }
 }
