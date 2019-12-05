@@ -2,9 +2,9 @@
 
 namespace Test\Services;
 
-use Muzik\EsafeSdk\Exceptions\RefundException;
-use Muzik\EsafeSdk\Services\RefundService;
 use PHPUnit\Framework\TestCase;
+use Muzik\EsafeSdk\Services\RefundService;
+use Muzik\EsafeSdk\Exceptions\RefundException;
 
 class RefundTest extends TestCase
 {

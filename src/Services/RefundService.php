@@ -3,7 +3,6 @@
 namespace Muzik\EsafeSdk\Services;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\TransferException;
 use Muzik\EsafeSdk\Exceptions\RefundException;
 

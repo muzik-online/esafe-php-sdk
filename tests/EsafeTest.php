@@ -3,8 +3,8 @@
 namespace Test;
 
 use Muzik\EsafeSdk\Esafe;
-use Muzik\EsafeSdk\Services\RefundService;
 use PHPUnit\Framework\TestCase;
+use Muzik\EsafeSdk\Services\RefundService;
 
 class EsafeTest extends TestCase
 {
