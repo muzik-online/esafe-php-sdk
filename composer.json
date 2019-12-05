@@ -1,0 +1,19 @@
+{
+    "name": "muzik/esafe-php-sdk",
+    "description": "Unofficial PHP SDK for esafe.com.tw, made by muzik-online.",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.4",
+        "php": "^7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.4"
+    },
+    "authors": [
+        {
+            "name": "Vincent Chi",
+            "email": "song374561@chivincent.net"
+        }
+    ],
+    "minimum-stability": "stable"
+}
