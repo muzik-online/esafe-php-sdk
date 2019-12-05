@@ -36,4 +36,9 @@ abstract class BaseHandler implements Handler
     {
         return $this->parameters[$name] ?? null;
     }
+
+    public function getParameters(): array
+    {
+        return $this->parameters;
+    }
 }

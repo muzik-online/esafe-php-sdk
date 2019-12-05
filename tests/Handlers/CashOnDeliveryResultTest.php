@@ -32,4 +32,20 @@ class CashOnDeliveryResultTest extends TestCase
     {
         $this->assertInstanceOf(CashOnDeliveryResult::class, new CashOnDeliveryResult($this->makeRequest($this->parameters), 'abcd5888'));
     }
+
+    public function test_get_parameters()
+    {
+        $handler = new CashOnDeliveryResult($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertEquals([
+            'buysafeno' => '2400009912300000019',
+            'web' => 'S1103020010',
+            'MN' => '1000',
+            'Name' => 'V****** **i',
+            'SendType' => '1',
+            'errcode' => '00',
+            'CargoNo' => 'F23501480823',
+            'ChkValue' => '6E0ED343525CDCBE678BB1103054CBA25E634282',
+        ], $handler->getParameters());
+    }
 }

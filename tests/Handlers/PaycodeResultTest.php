@@ -40,4 +40,20 @@ class PaycodeResultTest extends TestCase
     {
         $this->assertInstanceOf(PaycodeResult::class, new PaycodeResult($this->makeRequest($this->parameters), 'abcd5888'));
     }
+
+    public function test_get_parameters()
+    {
+        $handler = new PaycodeResult($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertEquals([
+            'buysafeno' => '2400009912300000019',
+            'web' => 'S1103020010',
+            'MN' => '1000',
+            'Name' => 'V****** **i',
+            'PayDate' => '20200101',
+            'PayType' => '5',
+            'errcode' => '00',
+            'ChkValue' => '6E0ED343525CDCBE678BB1103054CBA25E634282',
+        ], $handler->getParameters());
+    }
 }

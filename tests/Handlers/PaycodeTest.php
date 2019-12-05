@@ -56,4 +56,21 @@ class PaycodeTest extends TestCase
     {
         $this->assertInstanceOf(Paycode::class, new Paycode($this->makeRequest($this->parameters), 'abcd5888'));
     }
+
+    public function test_get_parameters()
+    {
+        $handler = new Paycode($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertEquals([
+            'buysafeno' =>	'2400009912300000019',
+            'web' =>	'S1103020010',
+            'MN' =>	'1000',
+            'webname' =>	'香港商帕格數碼媒體股份有限公司',
+            'Name' =>	'V****** **i',
+            'SendType' =>	'1',
+            'paycode' =>	'LAC90824000098',
+            'PayType' =>	'4,5,6,7',
+            'ChkValue' =>	'9C53A993836A12DD477CF39FBB10E0C4E67323E0',
+        ], $handler->getParameters());
+    }
 }

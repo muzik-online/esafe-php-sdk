@@ -56,4 +56,22 @@ class BankTransferTest extends TestCase
     {
         $this->assertInstanceOf(BankTransfer::class, new BankTransfer($this->makeRequest($this->parameters), 'abcd5888'));
     }
+
+    public function test_get_parameters()
+    {
+        $handler = new BankTransfer($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertEquals([
+            'buysafeno' => '2400009912300000019',
+            'web' => 'S1103020010',
+            'MN' => '1000',
+            'webname' => '英屬維京群島商希幔數位有限公司台灣分公司',
+            'Name' => 'V****** **i',
+            'SendType' => '1',
+            'EntityATM' => '91708888888888',
+            'BankCode' => '8220163',
+            'BankName' => '中國信託銀行 敦南分行',
+            'ChkValue' => 'C0A61FA4830F0B171273B2DC0CCFA2A9BA719A76',
+        ], $handler->getParameters());
+    }
 }

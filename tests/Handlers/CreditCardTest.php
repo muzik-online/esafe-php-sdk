@@ -46,4 +46,24 @@ class CreditCardTest extends TestCase
     {
         $this->assertInstanceOf(CreditCard::class, new CreditCard($this->makeRequest($this->parameters), 'abcd5888'));
     }
+
+    public function test_get_parameters()
+    {
+        $handler = new CreditCard($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertEquals([
+            'buysafeno' => '2400009912300000019',
+            'web' => 'S1103020010',
+            'MN' => '1000',
+            'webname' => '英屬維京群島商希幔數位有限公司台灣分公司',
+            'Name' => 'V****** **i',
+            'ApproveCode' => 'T3NCCC',
+            'Card_NO' => '1111',
+            'Card_Type' => '0',
+            'SendType' => '1',
+            'errcode' => '00',
+            'errmsg' => '成功交易',
+            'ChkValue' => '6E0ED343525CDCBE678BB1103054CBA25E634282',
+        ], $handler->getParameters());
+    }
 }
