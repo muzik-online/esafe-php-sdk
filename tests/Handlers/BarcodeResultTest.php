@@ -2,9 +2,9 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Foundation\Testing\Faker;
-use Muzik\EsafeSdk\Handlers\BarcodeResult;
 use PHPUnit\Framework\TestCase;
+use Muzik\EsafeSdk\Handlers\BarcodeResult;
+use Muzik\EsafeSdk\Foundation\Testing\Faker;
 
 class BarcodeResultTest extends TestCase
 {

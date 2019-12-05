@@ -2,9 +2,9 @@
 
 namespace Test\Handlers;
 
+use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
 use Muzik\EsafeSdk\Handlers\CashOnDeliveryResult;
-use PHPUnit\Framework\TestCase;
 
 /*
  * Notice: This test case is not mocked by esafe.com.tw responses.

@@ -2,9 +2,9 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Foundation\Testing\Faker;
-use Muzik\EsafeSdk\Handlers\CashOnDelivery;
 use PHPUnit\Framework\TestCase;
+use Muzik\EsafeSdk\Handlers\CashOnDelivery;
+use Muzik\EsafeSdk\Foundation\Testing\Faker;
 
 class CashOnDeliveryTest extends TestCase
 {

@@ -2,9 +2,9 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Foundation\Testing\Faker;
-use Muzik\EsafeSdk\Handlers\CreditCard;
 use PHPUnit\Framework\TestCase;
+use Muzik\EsafeSdk\Handlers\CreditCard;
+use Muzik\EsafeSdk\Foundation\Testing\Faker;
 
 class CreditCardTest extends TestCase
 {

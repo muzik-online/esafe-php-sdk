@@ -2,9 +2,9 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Foundation\Testing\Faker;
-use Muzik\EsafeSdk\Handlers\Taiwanpay;
 use PHPUnit\Framework\TestCase;
+use Muzik\EsafeSdk\Handlers\Taiwanpay;
+use Muzik\EsafeSdk\Foundation\Testing\Faker;
 
 /*
  * Notice: This test case is not mocked by esafe.com.tw responses.
