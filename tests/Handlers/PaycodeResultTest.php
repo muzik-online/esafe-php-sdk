@@ -13,7 +13,7 @@ class PaycodeResultTest extends TestCase
 {
     use Faker;
 
-    protected $parameters = [
+    protected array $parameters = [
         'buysafeno' => '2400009912300000019',
         'web' => 'S1103020010',
         'Td' => '',
