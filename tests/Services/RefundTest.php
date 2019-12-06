@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Muzik\EsafeSdk\Exceptions\HandlerException;
@@ -78,5 +79,43 @@ class RefundTest extends TestCase
             'RefundMemo' => 'Hello World',
         ], 'abcd5888', true, $client);
         $service->send();
+    }
+
+    public function test_send()
+    {
+        $container = [];
+        $history = Middleware::history($container);
+        $mock = new MockHandler([
+            new Response(200, [], 'E0')
+        ]);
+        $handler = HandlerStack::create($mock);
+        $handler->push($history);
+        $client = new Client(['handler' => $handler]);
+
+        $service = new RefundService([
+            'web' => 'S1103020010',
+            'MN' => '1000',
+            'buysafeno' => '2400009912300000019',
+            'Td' => 'AC9087201',
+            'RefundMemo' => 'Hello World',
+        ], 'abcd5888', true, $client);
+        $service->send();
+
+        $this->assertEquals([
+            'web' => 'S1103020010',
+            'MN' => '1000',
+            'buysafeno' => '2400009912300000019',
+            'Td' => 'AC9087201',
+            'RefundMemo' => 'Hello World',
+            'ChkValue' => '249dc284c00f9105b807b7510cdfb5b476daf4e7e59a7030adac7307a2707246',
+        ], $this->parseFormParameters($container[0]['request']->getBody()->getContents()));
+    }
+
+    protected function parseFormParameters(string $encoded): array
+    {
+        $result = [];
+        parse_str($encoded, $result);
+
+        return $result;
     }
 }
