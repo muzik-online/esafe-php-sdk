@@ -19,6 +19,8 @@ composer require muzik/esafe-php-sdk
 
 ## Usage
 
+### 處理交易時 Web Hook
+
 ```php
 <?php
 
@@ -31,6 +33,33 @@ $sdk = new Esafe([
 ]);
 
 $sdk->handle(Esafe::HANDLER_CREDIT_CARD, \GuzzleHttp\Psr7\ServerRequest::fromGlobals());
+```
+
+### 進行退款處理
+
+```php
+<?php
+
+use Muzik\EsafeSdk\Esafe;
+
+$sdk = new Esafe([
+    // string of password when transaction, it should be set in esafe.com.tw
+    // IMPORTANT: The value is **NOT** login password for esafe.com.tw!
+    'transaction_password' => 'abcd5888',
+]);
+
+$sdk->refund([
+    // 商家代號
+    'web' => 'S1103020010',
+    // 交易金額
+    'MN' => '1000',
+    // 紅陽交易編號
+    'buysafeno' => '2400009912300000019',
+    // 訂單編號（通常由商家自行生成）
+    'Td' => 'AC9087201',
+    // 退款原因
+    'RefundMemo' => 'Hello World',
+], $isTesting = false);
 ```
 
 ### Available Handlers
