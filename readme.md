@@ -19,6 +19,8 @@ composer require muzik/esafe-php-sdk
 
 ## Usage
 
+### 處理交易時 Web Hook
+
 ```php
 <?php
 
@@ -33,6 +35,33 @@ $sdk = new Esafe([
 $sdk->handle(Esafe::HANDLER_CREDIT_CARD, \GuzzleHttp\Psr7\ServerRequest::fromGlobals());
 ```
 
+### 進行退款處理
+
+```php
+<?php
+
+use Muzik\EsafeSdk\Esafe;
+
+$sdk = new Esafe([
+    // string of password when transaction, it should be set in esafe.com.tw
+    // IMPORTANT: The value is **NOT** login password for esafe.com.tw!
+    'transaction_password' => 'abcd5888',
+]);
+
+$sdk->refund([
+    // 商家代號
+    'web' => 'S1103020010',
+    // 交易金額
+    'MN' => '1000',
+    // 紅陽交易編號
+    'buysafeno' => '2400009912300000019',
+    // 訂單編號（通常由商家自行生成）
+    'Td' => 'AC9087201',
+    // 退款原因
+    'RefundMemo' => 'Hello World',
+], $isTesting = false);
+```
+
 ### Available Handlers
 
 1. 所有支付方式都有「交易結果」
@@ -40,6 +69,7 @@ $sdk->handle(Esafe::HANDLER_CREDIT_CARD, \GuzzleHttp\Psr7\ServerRequest::fromGlo
     - 超商條碼
     - 超商代碼
     - 虛擬銀行帳號
+    - 貨到付款
 
 > 非同步付款：消費者於交易結果產生後才進行付款。
 >
@@ -57,5 +87,21 @@ $sdk->handle(Esafe::HANDLER_CREDIT_CARD, \GuzzleHttp\Psr7\ServerRequest::fromGlo
 - `Esafe::HANDLER_CASH_ON_DELIVERY`: 貨到付款
 - `Esafe::HANDLER_CASH_ON_DELIVERY_RESULT`: 貨到付款
 - `Esafe::HANDLER_TAIWAN_PAY`: 台灣Pay
+
+### Refund 注意事項
+
+- `web`, `MN`, `buysafeno`, `Td` 及 `RefundMemo` 為必填，且**不可**為空字串
+- 發出退款的主機 IP 需經紅陽認證，請另行申請
+- 退款僅限信用卡及銀聯卡的付款
+- 僅能退款 2 個月內的交易
+
+### 錯誤處理
+
+本 SDK 只會拋出兩種例外
+
+- `HandlerException` 及 `RefundException`
+    - 如果不屬於這兩種 Exception，表示底層出現 Fatal Error
+    - 這兩種 Exception 都繼承 `\RuntimeException`
+- 請妥善處理這兩種例外
 
 ## License
