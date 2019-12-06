@@ -88,4 +88,20 @@ $sdk->refund([
 - `Esafe::HANDLER_CASH_ON_DELIVERY_RESULT`: 貨到付款
 - `Esafe::HANDLER_TAIWAN_PAY`: 台灣Pay
 
+### Refund 注意事項
+
+- `web`, `MN`, `buysafeno`, `Td` 及 `RefundMemo` 為必填，且**不可**為空字串
+- 發出退款的主機 IP 需經紅陽認證，請另行申請
+- 退款僅限信用卡及銀聯卡的付款
+- 僅能退款 2 個月內的交易
+
+### 錯誤處理
+
+本 SDK 只會拋出兩種例外
+
+- `HandlerException` 及 `RefundException`
+    - 如果不屬於這兩種 Exception，表示底層出現 Fatal Error
+    - 這兩種 Exception 都繼承 `\RuntimeException`
+- 請妥善處理這兩種例外
+
 ## License
