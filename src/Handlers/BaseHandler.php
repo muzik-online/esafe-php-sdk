@@ -48,6 +48,15 @@ abstract class BaseHandler implements Handler
         return $this->parameters;
     }
 
+    public function getTransactionReference(): string
+    {
+        if (isset($this->parameters['buysafeno'])) {
+            return $this->parameters['buysafeno'];
+        }
+
+        throw new HandlerException('Missing "buysafeno" from response');
+    }
+
     protected function parseRequest($request): array
     {
         if ($request instanceof ServerRequestInterface) {
