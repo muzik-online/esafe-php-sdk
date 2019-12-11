@@ -40,7 +40,7 @@ class Esafe
         $this->apiKey = $config['transaction_password'];
     }
 
-    public function handle(string $handler, ServerRequestInterface $request): Handler
+    public function handle(string $handler, $request): Handler
     {
         return new $handler($request, $this->apiKey);
     }
