@@ -33,7 +33,8 @@ $sdk = new Esafe([
 ]);
 
 $sdk->handle(Esafe::HANDLER_CREDIT_CARD, \GuzzleHttp\Psr7\ServerRequest::fromGlobals());
-// $sdk->handle(Esafe::HANDLER_CREDIT_CARD, (array) \GuzzleHttp\Psr7\ServerRequest::fromGlobals()->getParsedBody())
+// The following method is allowed: 
+// $sdk->handle(Esafe::HANDLER_CREDIT_CARD, $_POST);
 ```
 
 ### 進行退款處理
