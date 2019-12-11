@@ -2,6 +2,7 @@
 
 namespace Test\Handlers;
 
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Handlers\PaycodeResult;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
@@ -39,6 +40,17 @@ class PaycodeResultTest extends TestCase
     public function test_constructable()
     {
         $this->assertInstanceOf(PaycodeResult::class, new PaycodeResult($this->makeRequest($this->parameters), 'abcd5888'));
+    }
+
+    public function test_construct_by_array_request()
+    {
+        $this->assertInstanceOf(PaycodeResult::class, new PaycodeResult($this->parameters, 'abcd5888'));
+    }
+
+    public function test_construct_failed()
+    {
+        $this->expectException(HandlerException::class);
+        new PaycodeResult('not array', 'abcd5888');
     }
 
     public function test_get_parameters()

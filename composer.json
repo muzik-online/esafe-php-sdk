@@ -2,6 +2,7 @@
     "name": "muzik/esafe-php-sdk",
     "description": "Unofficial PHP SDK for esafe.com.tw, made by muzik-online.",
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": "^7.4",
         "guzzlehttp/guzzle": "^6.4"
