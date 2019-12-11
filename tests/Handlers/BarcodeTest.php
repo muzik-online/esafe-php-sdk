@@ -2,10 +2,10 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Exceptions\HandlerException;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Handlers\Barcode;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 
 class BarcodeTest extends TestCase
 {

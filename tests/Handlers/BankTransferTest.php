@@ -2,11 +2,10 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Exceptions\HandlerException;
-use Muzik\EsafeSdk\Handlers\BankTransferResult;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Handlers\BankTransfer;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 
 class BankTransferTest extends TestCase
 {

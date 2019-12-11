@@ -3,9 +3,9 @@
 namespace Muzik\EsafeSdk\Handlers;
 
 use Muzik\EsafeSdk\Contracts\Handler;
-use Muzik\EsafeSdk\Exceptions\HandlerException;
 use Muzik\EsafeSdk\Foundation\Validation;
 use Psr\Http\Message\ServerRequestInterface;
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 
 abstract class BaseHandler implements Handler
 {
@@ -61,7 +61,7 @@ abstract class BaseHandler implements Handler
     {
         if ($request instanceof ServerRequestInterface) {
             return (array) $request->getParsedBody();
-        } else if (is_array($request)) {
+        } elseif (is_array($request)) {
             return $request;
         }
 
