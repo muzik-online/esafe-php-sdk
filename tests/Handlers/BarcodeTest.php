@@ -92,4 +92,11 @@ class BarcodeTest extends TestCase
             'ChkValue' => 'C0A61FA4830F0B171273B2DC0CCFA2A9BA719A76',
         ], $handler->getParameters());
     }
+
+    public function test_get_transaction_reference()
+    {
+        $handler = new Barcode($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertSame('2400009912300000019', $handler->getTransactionReference());
+    }
 }

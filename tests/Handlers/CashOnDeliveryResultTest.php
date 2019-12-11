@@ -3,6 +3,7 @@
 namespace Test\Handlers;
 
 use Muzik\EsafeSdk\Exceptions\HandlerException;
+use Muzik\EsafeSdk\Handlers\BankTransferResult;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
 use Muzik\EsafeSdk\Handlers\CashOnDeliveryResult;
@@ -59,5 +60,12 @@ class CashOnDeliveryResultTest extends TestCase
             'CargoNo' => 'F23501480823',
             'ChkValue' => '6E0ED343525CDCBE678BB1103054CBA25E634282',
         ], $handler->getParameters());
+    }
+
+    public function test_get_transaction_reference()
+    {
+        $handler = new CashOnDeliveryResult($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertSame('2400009912300000019', $handler->getTransactionReference());
     }
 }

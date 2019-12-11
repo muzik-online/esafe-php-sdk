@@ -85,4 +85,11 @@ class PaycodeTest extends TestCase
             'ChkValue' =>	'9C53A993836A12DD477CF39FBB10E0C4E67323E0',
         ], $handler->getParameters());
     }
+
+    public function test_get_transaction_reference()
+    {
+        $handler = new Paycode($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertSame('2400009912300000019', $handler->getTransactionReference());
+    }
 }

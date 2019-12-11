@@ -86,4 +86,11 @@ class CashOnDeliveryTest extends TestCase
             'ChkValue' => '7EBA96AA5FAEBC72E48A284C74840E81D5B4B5FA',
         ], $handler->getParameters());
     }
+
+    public function test_get_transaction_reference()
+    {
+        $handler = new CashOnDelivery($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertSame('2400009912300000019', $handler->getTransactionReference());
+    }
 }

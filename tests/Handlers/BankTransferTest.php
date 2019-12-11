@@ -3,6 +3,7 @@
 namespace Test\Handlers;
 
 use Muzik\EsafeSdk\Exceptions\HandlerException;
+use Muzik\EsafeSdk\Handlers\BankTransferResult;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Handlers\BankTransfer;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
@@ -85,5 +86,12 @@ class BankTransferTest extends TestCase
             'BankName' => '中國信託銀行 敦南分行',
             'ChkValue' => 'C0A61FA4830F0B171273B2DC0CCFA2A9BA719A76',
         ], $handler->getParameters());
+    }
+
+    public function test_get_transaction_reference()
+    {
+        $handler = new BankTransfer($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertSame('2400009912300000019', $handler->getTransactionReference());
     }
 }
