@@ -106,3 +106,5 @@ $sdk->refund([
 - 請妥善處理這兩種例外
 
 ## License
+
+This library is under [MIT](https://opensource.org/licenses/MIT) license.
