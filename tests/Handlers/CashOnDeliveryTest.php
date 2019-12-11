@@ -2,10 +2,10 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Exceptions\HandlerException;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Handlers\CashOnDelivery;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 
 class CashOnDeliveryTest extends TestCase
 {
@@ -85,5 +85,12 @@ class CashOnDeliveryTest extends TestCase
             'StoreID' => '167606',
             'ChkValue' => '7EBA96AA5FAEBC72E48A284C74840E81D5B4B5FA',
         ], $handler->getParameters());
+    }
+
+    public function test_get_transaction_reference()
+    {
+        $handler = new CashOnDelivery($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertSame('2400009912300000019', $handler->getTransactionReference());
     }
 }

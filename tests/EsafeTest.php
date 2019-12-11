@@ -2,10 +2,10 @@
 
 namespace Test;
 
-use GuzzleHttp\Psr7\ServerRequest;
 use Muzik\EsafeSdk\Esafe;
-use Muzik\EsafeSdk\Handlers\CreditCard;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Psr7\ServerRequest;
+use Muzik\EsafeSdk\Handlers\CreditCard;
 use Muzik\EsafeSdk\Services\RefundService;
 
 class EsafeTest extends TestCase

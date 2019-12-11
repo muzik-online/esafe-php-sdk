@@ -3,9 +3,9 @@
 namespace Muzik\EsafeSdk\Handlers;
 
 use Muzik\EsafeSdk\Contracts\Handler;
-use Muzik\EsafeSdk\Exceptions\HandlerException;
 use Muzik\EsafeSdk\Foundation\Validation;
 use Psr\Http\Message\ServerRequestInterface;
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 
 abstract class BaseHandler implements Handler
 {
@@ -48,11 +48,20 @@ abstract class BaseHandler implements Handler
         return $this->parameters;
     }
 
+    public function getTransactionReference(): string
+    {
+        if (isset($this->parameters['buysafeno'])) {
+            return $this->parameters['buysafeno'];
+        }
+
+        throw new HandlerException('Missing "buysafeno" from response');
+    }
+
     protected function parseRequest($request): array
     {
         if ($request instanceof ServerRequestInterface) {
             return (array) $request->getParsedBody();
-        } else if (is_array($request)) {
+        } elseif (is_array($request)) {
             return $request;
         }
 
