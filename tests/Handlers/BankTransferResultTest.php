@@ -2,6 +2,7 @@
 
 namespace Test\Handlers;
 
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
 use Muzik\EsafeSdk\Handlers\BankTransferResult;
@@ -45,6 +46,17 @@ class BankTransferResultTest extends TestCase
     public function test_constructable()
     {
         $this->assertInstanceOf(BankTransferResult::class, new BankTransferResult($this->makeRequest($this->parameters), 'abcd5888'));
+    }
+
+    public function test_construct_by_array_request()
+    {
+        $this->assertInstanceOf(BankTransferResult::class, new BankTransferResult($this->parameters, 'abcd5888'));
+    }
+
+    public function test_construct_failed()
+    {
+        $this->expectException(HandlerException::class);
+        new BankTransferResult('not array', 'abcd5888');
     }
 
     public function test_get_parameters()
