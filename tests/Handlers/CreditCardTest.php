@@ -2,6 +2,7 @@
 
 namespace Test\Handlers;
 
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Handlers\CreditCard;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
@@ -45,6 +46,17 @@ class CreditCardTest extends TestCase
     public function test_constructable()
     {
         $this->assertInstanceOf(CreditCard::class, new CreditCard($this->makeRequest($this->parameters), 'abcd5888'));
+    }
+
+    public function test_construct_by_array_request()
+    {
+        $this->assertInstanceOf(CreditCard::class, new CreditCard($this->parameters, 'abcd5888'));
+    }
+
+    public function test_construct_failed()
+    {
+        $this->expectException(HandlerException::class);
+        new CreditCard('not array', 'abcd5888');
     }
 
     public function test_get_parameters()

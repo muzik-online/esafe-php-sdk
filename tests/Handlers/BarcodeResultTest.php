@@ -2,6 +2,7 @@
 
 namespace Test\Handlers;
 
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Handlers\BarcodeResult;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
@@ -45,6 +46,17 @@ class BarcodeResultTest extends TestCase
     public function test_constructable()
     {
         $this->assertInstanceOf(BarcodeResult::class, new BarcodeResult($this->makeRequest($this->parameters), 'abcd5888'));
+    }
+
+    public function test_construct_by_array_request()
+    {
+        $this->assertInstanceOf(BarcodeResult::class, new BarcodeResult($this->parameters, 'abcd5888'));
+    }
+
+    public function test_construct_failed()
+    {
+        $this->expectException(HandlerException::class);
+        new BarcodeResult('not array', 'abcd5888');
     }
 
     public function test_get_parameters()
