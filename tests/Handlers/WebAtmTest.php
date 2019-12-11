@@ -2,10 +2,10 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Exceptions\HandlerException;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Handlers\WebAtm;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 
 class WebAtmTest extends TestCase
 {
@@ -84,5 +84,12 @@ class WebAtmTest extends TestCase
             'errmsg' => 	'交易成功',
             'ChkValue' => 	'6E0ED343525CDCBE678BB1103054CBA25E634282',
         ], $handler->getParameters());
+    }
+
+    public function test_get_transaction_reference()
+    {
+        $handler = new WebAtm($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertSame('2400009912300000019', $handler->getTransactionReference());
     }
 }

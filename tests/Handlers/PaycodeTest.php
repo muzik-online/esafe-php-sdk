@@ -2,10 +2,10 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Exceptions\HandlerException;
 use PHPUnit\Framework\TestCase;
 use Muzik\EsafeSdk\Handlers\Paycode;
 use Muzik\EsafeSdk\Foundation\Testing\Faker;
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 
 class PaycodeTest extends TestCase
 {
@@ -84,5 +84,12 @@ class PaycodeTest extends TestCase
             'PayType' =>	'4,5,6,7',
             'ChkValue' =>	'9C53A993836A12DD477CF39FBB10E0C4E67323E0',
         ], $handler->getParameters());
+    }
+
+    public function test_get_transaction_reference()
+    {
+        $handler = new Paycode($this->makeRequest($this->parameters), 'abcd5888');
+
+        $this->assertSame('2400009912300000019', $handler->getTransactionReference());
     }
 }
