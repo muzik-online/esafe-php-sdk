@@ -1,4 +1,5 @@
 # ESafe PHP SDK
+![](https://github.com/muzik-online/esafe-php-sdk/workflows/Test/badge.svg)
 
 Unofficial PHP SDK for [紅陽支付](https://www.esafe.com.tw/index/Index.aspx), made by [Muzik Air](https://muzikair.com).
 
