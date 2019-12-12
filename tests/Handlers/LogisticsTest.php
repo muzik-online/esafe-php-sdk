@@ -2,10 +2,10 @@
 
 namespace Test\Handlers;
 
-use Muzik\EsafeSdk\Exceptions\HandlerException;
-use Muzik\EsafeSdk\Foundation\Testing\Faker;
-use Muzik\EsafeSdk\Handlers\Logistics;
 use PHPUnit\Framework\TestCase;
+use Muzik\EsafeSdk\Handlers\Logistics;
+use Muzik\EsafeSdk\Foundation\Testing\Faker;
+use Muzik\EsafeSdk\Exceptions\HandlerException;
 
 /*
  * Notice: This test case is not mocked by esafe.com.tw responses.
