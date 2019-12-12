@@ -10,6 +10,7 @@ use Muzik\EsafeSdk\Handlers\Taiwanpay;
 use Muzik\EsafeSdk\Handlers\CreditCard;
 use Muzik\EsafeSdk\Handlers\BankTransfer;
 use Muzik\EsafeSdk\Handlers\UnionpayCard;
+use Muzik\EsafeSdk\Services\CheckService;
 use Muzik\EsafeSdk\Handlers\BarcodeResult;
 use Muzik\EsafeSdk\Handlers\PaycodeResult;
 use Muzik\EsafeSdk\Services\RefundService;
@@ -47,5 +48,10 @@ class Esafe
     public function refund(array $parameters, bool $testing): RefundService
     {
         return new RefundService($parameters, $this->apiKey, $testing);
+    }
+
+    public function check(array $parameters, bool $testing): CheckService
+    {
+        return new CheckService($parameters, $this->apiKey, $testing);
     }
 }
