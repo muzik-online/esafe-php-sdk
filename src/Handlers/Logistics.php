@@ -6,7 +6,7 @@ class Logistics extends BaseHandler
 {
     protected function checkValue(): string
     {
-        $data = $this->web . $this->apiKey . $this->buysafeno . $this->CargoNo;
+        $data = $this->web . $this->apiKey . $this->buysafeno . $this->StoreType;
 
         return strtoupper(hash('sha1', $data));
     }
