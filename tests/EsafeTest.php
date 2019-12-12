@@ -3,6 +3,7 @@
 namespace Test;
 
 use Muzik\EsafeSdk\Esafe;
+use Muzik\EsafeSdk\Services\CheckService;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Psr7\ServerRequest;
 use Muzik\EsafeSdk\Handlers\CreditCard;
@@ -57,6 +58,18 @@ class EsafeTest extends TestCase
             'buysafeno' => '2400009912300000019',
             'Td' => 'AC9087201',
             'RefundMemo' => 'Hello World',
+        ], true));
+    }
+
+    public function test_check()
+    {
+        $sdk = new Esafe([
+            'transaction_password' => 'abcd5888',
+        ]);
+
+        $this->assertInstanceOf(CheckService::class, $sdk->check([
+            'web' => 'S1103020010',
+            'MN' => '110',
         ], true));
     }
 }
