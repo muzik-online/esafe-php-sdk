@@ -7,6 +7,7 @@ Unofficial PHP SDK for [紅陽支付](https://www.esafe.com.tw/index/Index.aspx)
 
 1. 紅陽支付因設計上的缺陷，故無法由 PHP 端送出交易
     - 需要另外由前端實作送出交易的功能
+        - 前端若需要計算 `ChkValue` 時，請**務必**交給後端程式計算，否則將會暴露交易密碼
     - 本 SDK 著重於接受紅陽之 WebHook 功能（後台顯示名為「交易成功接收網址」、「交易失敗接收網址」與「交易回傳確認網址」）
 2. 部份功能需與紅陽支付另外申請
     - Taiwanpay 支付方式
