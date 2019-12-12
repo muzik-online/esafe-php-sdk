@@ -3,14 +3,14 @@
 namespace Test\Services;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Muzik\EsafeSdk\Exceptions\CheckException;
-use Muzik\EsafeSdk\Services\CheckService;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Handler\MockHandler;
+use Muzik\EsafeSdk\Services\CheckService;
+use GuzzleHttp\Exception\RequestException;
+use Muzik\EsafeSdk\Exceptions\CheckException;
 
 class CheckTest extends TestCase
 {
