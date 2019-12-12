@@ -38,6 +38,34 @@ $sdk->handle(Esafe::HANDLER_CREDIT_CARD, \GuzzleHttp\Psr7\ServerRequest::fromGlo
 // $sdk->handle(Esafe::HANDLER_CREDIT_CARD, $_POST);
 ```
 
+### 確認交易狀況
+
+```php
+<?php
+
+use Muzik\EsafeSdk\Esafe;
+
+$sdk = new Esafe([
+    // string of password when transaction, it should be set in esafe.com.tw
+    // IMPORTANT: The value is **NOT** login password for esafe.com.tw!
+    'transaction_password' => 'abcd5888',
+]);
+
+$sdk->check([
+    // 商家代號
+    'web' => 'S1103020010',
+    // 交易金額
+    'MN' => '110',
+    // 紅陽交易編號
+    'buysafeno' => '2400009912300000019',
+    // 商家訂單編號
+    'Td' => 'AC9087201',
+    // 備註
+    'note1' => '',
+    'note2' => '',
+], $isTesting = false);
+```
+
 ### 進行退款處理
 
 ```php
@@ -98,14 +126,21 @@ $sdk->refund([
 - 退款僅限信用卡及銀聯卡的付款
 - 僅能退款 2 個月內的交易
 
+### Check 注意事項
+
+- `web` 為必填
+- `MN`, `buysafeno`, `Td`, `note1` 及 `note2` 則一填寫，可多填但至少需要一個
+- 若沒有加入 `buysafeno`，僅能查詢近七天內的交易
+
 ### 錯誤處理
 
-本 SDK 只會拋出兩種例外
+本 SDK 只會拋出三種例外
 
-- `HandlerException` 及 `RefundException`
+- `HandlerException`, `CheckException` 及 `RefundException`
     - 如果不屬於這兩種 Exception，表示底層出現 Fatal Error
-    - 這兩種 Exception 都繼承 `\RuntimeException`
+    - 這三種 Exception 都繼承 `\RuntimeException`
 - 請妥善處理這兩種例外
+- 使用 `check` 功能時，若無交易記錄仍然會拋出 `CheckException`，其 Message 為「無交易，請聯絡您的商家」
 
 ## License
 
