@@ -35,7 +35,7 @@ $sdk = new Esafe([
 ]);
 
 $sdk->handle(Esafe::HANDLER_CREDIT_CARD, \GuzzleHttp\Psr7\ServerRequest::fromGlobals());
-// The following method is allowed: 
+// The following method is also allowed: 
 // $sdk->handle(Esafe::HANDLER_CREDIT_CARD, $_POST);
 ```
 
@@ -126,6 +126,7 @@ $sdk->refund([
 - 發出退款的主機 IP 需經紅陽認證，請另行申請
 - 退款僅限信用卡及銀聯卡的付款
 - 僅能退款 2 個月內的交易
+    - 2 個月前的交易僅能透過後台進行退款作業
 
 ### Check 注意事項
 
